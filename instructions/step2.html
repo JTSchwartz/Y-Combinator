@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/e208a72f8e.js" crossorigin="anonymous"></script>
+	<link href="../css/prism.css" rel="stylesheet" type="text/css"/>
+	<title>Y-Combinator: Step 2</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+	<a class="navbar-brand" href="../">Y-Combinator in JavaScript</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="../">Demo</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link active dropdown-toggle" href="#" id="instructions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Instructions <span class="sr-only">(current)</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="instructions">
+					<a class="dropdown-item" href="./">Overview</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="step1.html">Step 1</a>
+					<a class="dropdown-item" href="step2.html">Step 2</a>
+					<a class="dropdown-item" href="step3.html">Step 3</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="../examples/">Examples</a>
+			</li>
+		</ul>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<a class="nav-link active" href="https://github.com/JTSchwartz/Y-Combinator" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="container">
+	<h2 class="py-3">Step 2</h2>
+	<pre>
+		<code class="language-js">
+			function pseudo(func) {
+				return recFunc((...arg) => {
+					return func(func)(...arg)
+				})
+			}
+		</code>
+	</pre>
+	
+	<div class="p-3">
+		<p>
+			Pseudo is our child function of the Y-Combinator that allows us to apply the function we are building. As shown in the previous step, we can pass a function to itself to simulate recursion, but we now need to apply the function to the necessary parameters in order to actually create a useful recursive function.
+		</p>
+		<p>
+			To start off, you can see that pseudo uses nearly the exact same line as recursion, <code class="language-js">return func(func)(...arg)</code>. This is so that we can use build imitated recursion into the application of the function without having to call the recursion function, as this would not be possible in a language that does not allow recursive calls.
+		</p>
+		<p>
+			Continuing down the stack, we find the first call to the recFunc parameter, the only parameter to the Y-Combinator and the declaration of the function that requires recursion. As is seen in both this function call and the previously discussed call, the JavaScript rest parameter (written as an ellipsis) is imperative to writing the Y-Combinator in this form while also allowing for recursive functions with multiple parameters. This would not be necessary if we were to write out the function in a more drawn out style, or were only to support single argument functions, but this allows us to do so in a concise manner. In a function declaration it accepts multiple parameters be wrapped into heterogeneous list of an undefined length, and in a function call, it expands a list into multiple arguments. This is necessary so that we can take in more than just the first parameter as well as pass separated parameters rather than just a list of arguments.
+		</p>
+		<p>
+			More information on the JavaScript rest operator can be found within the language's <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">documentation</a>
+		</p>
+	</div>
+	<div class="row" style="font-size: 1.15rem">
+		<div class="col">
+			<a href="step1.html"><i class="fas fa-long-arrow-alt-left"></i> Previous</a>
+		</div>
+		
+		<div class="col text-right">
+			<a href="step3.html">Next <i class="fas fa-long-arrow-alt-right"></i></a>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../js/prism.js"></script>
+</html>

@@ -8,12 +8,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/e208a72f8e.js" crossorigin="anonymous"></script>
-	<script src="js/yCombinator.js"></script>
-	<title>Y-Combinator</title>
+	<link href="../css/prism.css" rel="stylesheet" type="text/css"/>
+	<title>Y-Combinator: Step 1</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-	<a class="navbar-brand" href="#">Y-Combinator in JavaScript</a>
+	<a class="navbar-brand" href="../">Y-Combinator in JavaScript</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -21,22 +21,22 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Demo <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="../">Demo</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="instructions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Instructions
+				<a class="nav-link active dropdown-toggle" href="#" id="instructions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Instructions <span class="sr-only">(current)</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="instructions">
-					<a class="dropdown-item" href="instructions/">Overview</a>
+					<a class="dropdown-item" href="./">Overview</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="instructions/step1.html">Step 1</a>
-					<a class="dropdown-item" href="instructions/step2.html">Step 2</a>
-					<a class="dropdown-item" href="instructions/step3.html">Step 3</a>
+					<a class="dropdown-item" href="step1.html">Step 1</a>
+					<a class="dropdown-item" href="step2.html">Step 2</a>
+					<a class="dropdown-item" href="step3.html">Step 3</a>
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="examples/">Examples</a>
+				<a class="nav-link" href="../examples/">Examples</a>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
@@ -47,30 +47,33 @@
 	</div>
 </nav>
 <div class="container">
-	<form>
-		<div class="form-group py-5">
-			<h2><label for="fac">Factorial</label></h2>
-			<input class="form-control" id="fac" placeholder="Enter a Number">
-			<br/>
-			Result: <span id="fac-result">0</span>
-		</div>
-		<div class="form-group py-5">
-			<h2><label for="fib">Fibonacci</label></h2>
-			<input class="form-control" id="fib" placeholder="Enter a Number" >
-			<br/>
-			Result: <span id="fib-result">0</span>
+	<h2 class="py-3">Step 1</h2>
+	<pre>
+		<code class="language-js">
+			function recursion(func) {
+				return func(func)
+			}
+		</code>
+	</pre>
+	
+	<div class="p-3">
+		<p>
+			By the very definition of the Y-Combinator, recursion in the form most, if not all, developers understand is not supported. A function cannot call itself, from within its own definition. But as this is what we understand recursion to be, a workaround must be created. This is where the function recursion comes into play. A function may not be able to call itself, but we can write a separate function to call said function, while also passing that very same function to it. This will allow us to create and build up the function.
+		</p>
+		<p>
+			This may build in the recursive definition, but it still does not allow us to apply the function we build here, nor does it even allow us to even build recursion further than one magnitude higher.
+		</p>
+	</div>
+	<div class="row" style="font-size: 1.15rem">
+		<div class="col">
+			<a href="./"><i class="fas fa-long-arrow-alt-left"></i> Previous</a>
 		</div>
 		
-		<div class="form-group py-5">
-			<h2><label for="expCoef">Fibonacci</label></h2>
-			<input class="form-control" id="expCoef" placeholder="Enter a Number" onkeyup="expWrapper()">
-			<label for="expPow"></label>
-			<input class="form-control" id="expPow" placeholder="Enter a Number" onkeyup="expWrapper()">
-			<br/>
-			Result: <span id="exp-result">0</span>
+		<div class="col text-right">
+			<a href="step2.html">Next <i class="fas fa-long-arrow-alt-right"></i></a>
 		</div>
-	</form>
+	</div>
 </div>
 </body>
-<script src="js/main.js"></script>
+<script src="../js/prism.js"></script>
 </html>
